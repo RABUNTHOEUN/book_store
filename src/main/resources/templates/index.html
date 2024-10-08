@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+<div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold mb-6 text-gray-800">Book List</h2>
+    <a href="/showNewBookForm" class="inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 mb-4">Add New Book</a>
+
+    <table class="table-auto w-full bg-white shadow-md rounded border-collapse overflow-hidden">
+        <thead class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+        <tr>
+            <th class="py-3 px-6 text-left">Title</th>
+            <th class="py-3 px-6 text-left">Author</th>
+            <th class="py-3 px-6 text-left">Price</th>
+            <th class="py-3 px-6 text-left">Actions</th>
+        </tr>
+        </thead>
+        <tbody class="text-gray-700 text-sm font-light">
+        <tr th:each="book : ${listBooks}" class="border-b border-gray-200 hover:bg-gray-100">
+            <td th:text="${book.title}" class="py-3 px-6"></td>
+            <td th:text="${book.author}" class="py-3 px-6"></td>
+            <td th:text="${book.price}" class="py-3 px-6"></td>
+            <td class="py-3 px-6">
+                <a th:href="@{'/showFormForUpdate/' + ${book.id}}" class="text-blue-500 hover:underline">Edit</a>
+                <a th:href="@{'/deleteBook/' + ${book.id}}" class="text-red-500 hover:underline ml-4">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
